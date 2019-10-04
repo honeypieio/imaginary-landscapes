@@ -3,7 +3,8 @@ body {
 }
 
 #scene {
-    cursor: none;
+  cursor: none;
+  overflow: none;
 }
 
 #background {
@@ -11,138 +12,273 @@ body {
   height: 100vh;
 }
 
-#bottom-horizontal-stripe {
-  width: 100%;
-  height: 50%;
-  margin: auto;
-  position: absolute;
-  top: 100%;
-  left: 0%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#middle-horizontal-stripe {
-  width: 100%;
-  height: 50%;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#top-horizontal-stripe {
-  width: 100%;
-  height: 50%;
-  margin: auto;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-#left-vertical-stripe {
-  padding-top: 100%;
-  width: 50%;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#right-vertical-stripe {
-  padding-top: 100%;
-  width: 50%;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#center-vertical-stripe {
-  padding-top: 100%;
-  width: 50%;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#center-vertical-stripe-offset-top {
-  height: 50%;
-  width: 50%;
-  margin: auto;
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#center-vertical-stripe-offset-bottom {
-  height: 50%;
-  width: 50%;
-  margin: auto;
-  position: absolute;
-  top: 75%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#middle-horizontal-stripe-offset-right {
-  width: 100%;
-  height: 50%;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 75%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#middle-horizontal-stripe-offset-left {
-  width: 100%;
-  height: 50%;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 25%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#center-square {
-  width: 50%;
-  height: 50%;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
 .scene-element {
   position: absolute;
   z-index: 99;
+}
+
+@media only screen and (orientation: landscape) {
+  #bottom-horizontal-stripe {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #middle-horizontal-stripe {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #top-horizontal-stripe {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  #left-vertical-stripe {
+    padding-top: 100%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #right-vertical-stripe {
+    padding-top: 100%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #center-vertical-stripe {
+    padding-top: 100%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #center-vertical-stripe-offset-top {
+    height: 50%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #center-vertical-stripe-offset-bottom {
+    height: 50%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #middle-horizontal-stripe-offset-right {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #middle-horizontal-stripe-offset-left {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #center-square {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media only screen and (orientation: potrait) {
+  #bottom-horizontal-stripe {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #middle-horizontal-stripe {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #top-horizontal-stripe {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  #left-vertical-stripe {
+    padding-top: 100%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #right-vertical-stripe {
+    padding-top: 100%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #center-vertical-stripe {
+    padding-top: 100%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #center-vertical-stripe-offset-top {
+    height: 50%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #center-vertical-stripe-offset-bottom {
+    height: 50%;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #middle-horizontal-stripe-offset-right {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #middle-horizontal-stripe-offset-left {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #center-square {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
 }
