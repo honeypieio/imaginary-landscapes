@@ -85,3 +85,11 @@ a:hover {
 #settingsMenu h1, #settingsMenu h2, #settingsMenu h3, #settingsMenu p {
   color: #333;
 }
+
+.footer {
+  border-top: 1px solid white;
+  margin-top: 50px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}

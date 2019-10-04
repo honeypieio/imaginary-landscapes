@@ -4,6 +4,6 @@ Imaginary Landscapes creates a random, constantly evolving colour and soundscape
 
 ### How To Use
 
-**To change soundscape** left click or swipe left on mobile
+To **change soundscape** left click or swipe left on mobile
 
-**To change colourscape** right click or swipe right on mobile
+To **change colourscape** right click or swipe right on mobile
