@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+<iframe
+  id="youtubeVid"
+  src="https://www.youtube.com/embed/yPBakXfC8X4"
+  frameborder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+{{ .Content }}
+
+<small
+  >Note: this has only been tested with current Chromium/Chrome and Firefox.
+  Some mobile devices and older computers may also experience issues with
+  playing multiple audio sources at once.</small
+>
+
+<button id="initApp" type="submit" class="btn btn-block">Start</button>
+
+<script>
+  document.getElementById("initApp").addEventListener("click", function() {
+    document.body.innerHTML = "";
+    document.body.style.overflow = "hidden";
+    var sceneDiv = document.createElement("div");
+    sceneDiv.id = "scene";
+    document.body.appendChild(sceneDiv);
+    setTimeout(function() {
+      init();
+    }, 10);
+  });
+</script>
+
+{{ end }}

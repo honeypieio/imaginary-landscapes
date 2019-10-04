@@ -1,0 +1,87 @@
+@font-face {
+  font-family: "Ubuntu Mono";
+  src: url("/fonts/Ubuntu Mono derivative Powerline.ttf");
+}
+
+body {
+  font-family: "Ubuntu Mono";
+  background-color: #772953;
+  color: white;
+}
+
+.central-column {
+  width: 60%;
+  padding: 10px;
+  margin: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .central-column {
+    width: 95%;
+  }
+}
+
+a {
+  color: lightblue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: #4e2039;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-block {
+  margin: auto;
+  margin-top: 50px;
+  width: 50%;
+  display: block;
+}
+
+@media only screen and (max-width: 768px) {
+  .btn-block {
+    width: 100%;
+  }
+}
+
+.container {
+  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+}
+
+#youtubeVid {
+  width: 100%;
+  height: auto;
+  min-height: 45vh;
+}
+
+#settingsMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: none;
+  width: 90vw;
+  height: 90vh;
+  opacity: 0.95;
+  margin: auto;
+  background-color: #efefef;
+  z-index: 9999;
+  border-radius: 7.5px;
+}
+
+#settingsMenu h1, #settingsMenu h2, #settingsMenu h3, #settingsMenu p {
+  color: #333;
+}
