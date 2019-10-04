@@ -1,20 +1,12 @@
 {{ define "main" }}
 
-<iframe
-  id="youtubeVid"
-  src="https://www.youtube.com/embed/yPBakXfC8X4"
-  frameborder="0"
-  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe>
-
 {{ .Content }}
 
-<small
-  >Note: this has only been tested with current Chromium/Chrome and Firefox.
+<small>
+  Note: this has only been tested with current Chromium/Chrome and Firefox.
   Some mobile devices and older computers may also experience issues with
-  playing multiple audio sources at once.</small
->
+  playing multiple audio sources at once.
+</small>
 
 <button id="initApp" type="submit" class="btn btn-block">Start</button>
 
