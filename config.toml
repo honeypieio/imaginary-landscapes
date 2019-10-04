@@ -1,2 +1,3 @@
 title = "Imaginary Landscapes"
 theme = "imaginary-landscapes"
+publishDir = "docs"

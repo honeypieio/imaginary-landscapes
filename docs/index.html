@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.53" />
+  <meta charset="UTF-8">
+  <meta name="description" content="Gentle visual & auditory stimulation">
+  <meta name="keywords" content="ambient,gentle,generative,calming">
+  <meta name="author" content="Ross Hudson">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+
+  
+  <link rel="stylesheet" type="text/css" href="/css/colourscape/main.css">
+  <script src="/js/colourscape/main.js" async></script>
+
+  
+  <script src="/js/soundscape/tunings.js" async></script>
+  <script src="/js/soundscape/main.js" async></script>
+
+  <script src="/js/init.js" async></script>
+
+  
+    <title>Imaginary Landscapes</title>
+  
+</head>
+<body>
+        <div class="central-column"><h1 style="margin-bottom: 0;">Imaginary Landscapes</h1>
+
+<p style="margin-top: 2px;">Generative sound and vision!</p>
+
+<hr />
+
+
+<iframe
+  id="youtubeVid"
+  src="https://www.youtube.com/embed/yPBakXfC8X4"
+  frameborder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+
+
+<p>Imaginary Landscapes creates a random, constantly evolving colour and soundscape in your web browser.</p>
+
+<hr />
+
+<h3 id="how-to-use">How To Use</h3>
+
+<p><strong>To change soundscape</strong> left click or swipe left on mobile</p>
+
+<p><strong>To change colourscape</strong> right click or swipe right on mobile</p>
+
+
+<small
+  >Note: this has only been tested with current Chromium/Chrome and Firefox.
+  Some mobile devices and older computers may also experience issues with
+  playing multiple audio sources at once.</small
+>
+
+<button id="initApp" type="submit" class="btn btn-block">Start</button>
+
+<script>
+  document.getElementById("initApp").addEventListener("click", function() {
+    document.body.innerHTML = "";
+    document.body.style.overflow = "hidden";
+    var sceneDiv = document.createElement("div");
+    sceneDiv.id = "scene";
+    document.body.appendChild(sceneDiv);
+    setTimeout(function() {
+      init();
+    }, 10);
+  });
+</script>
+
+
+        </div></body>
+</html>
