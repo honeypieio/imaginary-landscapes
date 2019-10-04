@@ -50,15 +50,15 @@ for (i = 0; i < 360; i++) {
     colourscape.hueOptions.push(i);
   }
 
-  if (i > 49 && i < 96) {
+  if (i > 49 && i < 86) {
     colourscape.satOptions.push(i);
   }
 
-  if (i >= 70 && i < 80) {
+  if (i >= 80 && i < 96) {
     colourscape.lumOptions.push(i);
   }
 
-  if (i >= 50 && i <= 100) {
+  if (i >= 10 && i <= 100) {
     colourscape.alpOptions.push(i / 100);
   }
 }
