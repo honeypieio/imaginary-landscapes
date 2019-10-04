@@ -65,7 +65,7 @@ function init() {
 
   // Get options from URL query string.
   var urlParams = new URLSearchParams(window.location.search);
-  colourscape.delay = urlParams.get("delay") || 1000;
+  //colourscape.delay = urlParams.get("delay") || 1000;
   //var quality = urlParams.get('quality') || "lossy";
   var vision = urlParams.get("vision") || "on";
   var sound = urlParams.get("sound") || "on";
