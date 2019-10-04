@@ -1,14 +1,3 @@
-document.addEventListener("keypress", function(event) {
-  if (event.key == "m") {
-    var menu = document.getElementById("settingsMenu");
-    if (menu.style.display) {
-      menu.style.display = "";
-    } else {
-      menu.style.display = "block";
-    }
-  }
-});
-
 // Initialises sound and/or vision.
 function init() {
   document.body.addEventListener(
@@ -31,6 +20,48 @@ function init() {
     },
     false
   );
+
+  document.addEventListener("touchstart", handleTouchStart, false);
+  document.addEventListener("touchmove", handleTouchMove, false);
+  var xDown = null;
+  var yDown = null;
+
+  function handleTouchStart(evt) {
+    xDown = evt.touches[0].clientX;
+    yDown = evt.touches[0].clientY;
+  }
+
+  function handleTouchMove(evt) {
+    if (!xDown || !yDown) {
+      return;
+    }
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      /*most significant*/
+      if (xDiff > 0) {
+        soundscape.stopAll(function() {
+          soundscape.init();
+        });
+      } else {
+        colourscape.stopAllLoops();
+        document.getElementById("scene").innerHTML = "";
+        colourscape.initiateScene();
+      }
+    } else {
+      if (yDiff > 0) {
+        /* up swipe */
+      } else {
+        /* down swipe */
+      }
+    }
+    /* reset values */
+    xDown = null;
+    yDown = null;
+  }
 
   // Get options from URL query string.
   var urlParams = new URLSearchParams(window.location.search);
