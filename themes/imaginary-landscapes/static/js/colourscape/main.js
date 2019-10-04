@@ -50,11 +50,11 @@ for (i = 0; i < 360; i++) {
     colourscape.hueOptions.push(i);
   }
 
-  if (i > 49 && i < 86) {
+  if (i > 49 && i < 96) {
     colourscape.satOptions.push(i);
   }
 
-  if (i >= 80 && i < 96) {
+  if (i >= 70 && i < 86) {
     colourscape.lumOptions.push(i);
   }
 
@@ -90,7 +90,7 @@ colourscape.generateSceneElements = function() {
 
     let numberOfColours = 1;
 
-    if (Math.random() >= 0.5) {
+    if (Math.random() >= 0.2) {
       numberOfColours = 2;
     }
 

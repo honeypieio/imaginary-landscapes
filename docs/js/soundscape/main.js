@@ -270,7 +270,7 @@ soundscape.init = function() {
 
     soundscape.master.gainNode = soundscape.context.createGain();
     soundscape.master.gainNode.gain.setValueAtTime(
-      0.6,
+      1,
       soundscape.context.currentTime
     );
 
