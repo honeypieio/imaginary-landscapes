@@ -4,7 +4,7 @@ Imaginary Landscapes creates a random, constantly evolving colour and soundscape
 
 For best results play at low volume on headphones or external louspeakers and **add context**. Leave it on in the background while you're doing something else, while on the train, while reading a book, having a conversation.
 
-It's not designed to be actively watch/listened to, rather to be part of the environment you put it in - interesting enough to add to your chosen context and uninteresting enough to be completely ignorable.
+It's not designed to be actively watched/listened to, rather to be part of the environment you put it in - interesting enough to add something to your chosen context and uninteresting enough to be completely ignorable.
 
 ### How To Use
 
