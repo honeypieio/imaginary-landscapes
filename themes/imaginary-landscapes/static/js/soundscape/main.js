@@ -4,11 +4,11 @@ var soundscape = {};
 soundscape.tracks = {};
 soundscape.convolvers = {};
 soundscape.settings = {
-  sampleRate: 44100,
-  minDroneTracks: 1,
-  maxDroneTracks: 16,
+  sampleRate: 22050,
+  minDroneTracks: 4,
+  maxDroneTracks: 8,
   minPartsPerDroneTrack: 1,
-  maxPartsPerDroneTrack: 8,
+  maxPartsPerDroneTrack: 6,
   fadeOut: 5,
   oscWaveforms: ["sine", "triangle"]
 };
@@ -69,7 +69,6 @@ soundscape.generateDroneTracks = function() {
         ];
 
       oscillator.onended = function() {
-
         if (soundscape.tracks[trackId]) {
           delete soundscape.tracks[trackId].parts[partId];
 
@@ -222,20 +221,24 @@ soundscape.stopAll = function(callback) {
 
       soundscape.tracks[trackId].parts[
         partId
-      ].oscillator.onended = function(){}
+      ].oscillator.onended = function() {};
 
       soundscape.tracks[trackId].parts[
         partId
-      ].gainNode.gain.linearRampToValueAtTime(0, now + soundscape.settings.fadeOut);
-      soundscape.tracks[trackId].parts[partId].oscillator.stop(now + soundscape.settings.fadeOut + 0.01);
+      ].gainNode.gain.linearRampToValueAtTime(
+        0,
+        now + soundscape.settings.fadeOut
+      );
+      soundscape.tracks[trackId].parts[partId].oscillator.stop(
+        now + soundscape.settings.fadeOut + 0.01
+      );
     });
   });
-  soundscape.tracks = {}
+  soundscape.tracks = {};
 
-  setTimeout(function(){
+  setTimeout(function() {
     callback();
-  }, soundscape.settings.fadeOut * 1200)
-
+  }, soundscape.settings.fadeOut * 1200);
 };
 
 soundscape.getConvolver = function(callback) {
@@ -263,7 +266,9 @@ soundscape.getConvolver = function(callback) {
 
 soundscape.init = function() {
   // Create audio context;
-  soundscape.context = new AudioContext();
+  soundscape.context = new AudioContext({
+    sampleRate: soundscape.settings.sampleRate
+  });
 
   soundscape.getConvolver(function() {
     soundscape.master = {};
@@ -277,8 +282,11 @@ soundscape.init = function() {
     soundscape.master.reverb = soundscape.context.createConvolver();
     soundscape.master.reverb.buffer = soundscape.convolvers.cathedral;
 
+    soundscape.master.compressor = soundscape.context.createDynamicsCompressor();
+
     soundscape.master.reverb.connect(soundscape.master.gainNode);
-    soundscape.master.gainNode.connect(soundscape.context.destination);
+    soundscape.master.gainNode.connect(soundscape.master.compressor);
+    soundscape.master.compressor.connect(soundscape.context.destination);
 
     // Select key and mode.
     tunings.keys.getRandom(function(key) {
