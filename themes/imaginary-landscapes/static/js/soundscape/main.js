@@ -5,10 +5,105 @@ soundscape.tracks = {};
 soundscape.convolvers = {};
 soundscape.settings = {
   sampleRate: 22050,
-  minDroneTracks: 4,
-  maxDroneTracks: 8,
-  minPartsPerDroneTrack: 1,
-  maxPartsPerDroneTrack: 6,
+  drone: {
+    tracks: {
+      min: 4,
+      max: 8
+    },
+    parts: {
+      min: 1,
+      max: 3
+    },
+    changeOctave: {
+      up: {
+        chance: 1,
+        min: 2,
+        max: 2
+      },
+      down: {
+        chance: 66.666,
+        min: 2,
+        max: 3
+      }
+    },
+    gain: {
+      min: 0.03,
+      max: 0.08,
+      get dividedBy() {
+        return soundscape.settings.drone.tracks.max;
+      }
+    },
+    envelope: {
+      attack: {
+        min: 7,
+        max: 15
+      },
+      sustain: {
+        min: 4,
+        max: 7
+      },
+      release: {
+        min: 7,
+        max: 12
+      }
+    },
+    delay: {
+      pre: {
+        chance: 33.333,
+        min: 0.1,
+        max: 5
+      },
+      post: {
+        chance: 1,
+        min: 0.1,
+        max: 0.5
+      }
+    }
+  },
+  twiddle: {
+    changeOctave: {
+      up: {
+        chance: 1,
+        min: 2,
+        max: 2
+      },
+      down: {
+        chance: 90,
+        min: 2,
+        max: 3
+      }
+    },
+    gain: {
+      min: 0.01,
+      max: 0.04
+    },
+    envelope: {
+      attack: {
+        min: 1,
+        max: 3
+      },
+      sustain: {
+        min: 1,
+        max: 2
+      },
+      release: {
+        min: 1,
+        max: 3
+      }
+    },
+    delay: {
+      pre: {
+        chance: 33.333,
+        min: 0.1,
+        max: 1.5
+      },
+      post: {
+        chance: 1,
+        min: 0.1,
+        max: 1.5
+      }
+    }
+  },
   fadeOut: 5,
   oscWaveforms: ["sine", "triangle"]
 };
@@ -16,22 +111,22 @@ soundscape.settings = {
 soundscape.generateDroneTracks = function() {
   var currentMaxDroneTracks;
   if (
-    Object.keys(soundscape.tracks).length < soundscape.settings.maxDroneTracks
+    Object.keys(soundscape.tracks).length < soundscape.settings.drone.tracks.max
   ) {
     currentMaxDroneTracks =
-      soundscape.settings.maxDroneTracks -
+      soundscape.settings.drone.tracks.max -
       Object.keys(soundscape.tracks).length;
   } else {
     Object.keys(soundscape.tracks).length;
   }
 
   var numberOfTracks = randomInRange(
-    soundscape.settings.minDroneTracks,
+    soundscape.settings.drone.tracks.min,
     currentMaxDroneTracks
   );
 
   if (isNaN(numberOfTracks)) {
-    numberOfTracks = soundscape.settings.maxDroneTracks;
+    numberOfTracks = soundscape.settings.drone.tracks.max;
   }
 
   var tracks = Array.apply(null, Array(numberOfTracks));
@@ -47,7 +142,12 @@ soundscape.generateDroneTracks = function() {
 
     var parts = Array.apply(
       null,
-      Array(randomInRange(1, soundscape.settings.maxPartsPerDroneTrack))
+      Array(
+        randomInRange(
+          soundscape.settings.drone.parts.min,
+          soundscape.settings.drone.parts.max
+        )
+      )
     );
 
     parts.forEach(function(part) {
@@ -56,11 +156,26 @@ soundscape.generateDroneTracks = function() {
       var oscillator = soundscape.context.createOscillator();
       oscillator.frequency.value = frequency;
 
-      if (Math.random() >= 0.33) {
+      if (
+        Math.random() <=
+        soundscape.settings.drone.changeOctave.down.chance / 100
+      ) {
         oscillator.frequency.value =
-          oscillator.frequency.value / randomInRange(2, 3);
-      } else if (Math.random() <= 0.05) {
-        oscillator.frequency.value = oscillator.frequency.value * 2;
+          oscillator.frequency.value /
+          randomInRange(
+            soundscape.settings.drone.changeOctave.down.min,
+            soundscape.settings.drone.changeOctave.down.max
+          );
+      } else if (
+        Math.random() <=
+        soundscape.settings.drone.changeOctave.up.chance / 100
+      ) {
+        oscillator.frequency.value =
+          oscillator.frequency.value *
+          randomInRange(
+            soundscape.settings.drone.changeOctave.up.min,
+            soundscape.settings.drone.changeOctave.up.max
+          );
       }
 
       oscillator.type =
@@ -79,9 +194,9 @@ soundscape.generateDroneTracks = function() {
 
         if (
           Object.keys(soundscape.tracks).length <
-          soundscape.settings.maxDroneTracks
+          soundscape.settings.drone.tracks.max
         ) {
-          soundscape.generateDroneTracks();
+          minDroneTracks: 4, soundscape.generateDroneTracks();
         }
       };
 
@@ -93,28 +208,58 @@ soundscape.generateDroneTracks = function() {
         pan: randomInRange(0, 2000) / 1000 - 1
       });
 
-      var attack = randomInRange(7, 15);
-      var sustain = randomInRange(4, 7);
-      var release = randomInRange(7, 12);
-      var preDelay = 0;
-      var postDelay = 0;
+      var attack = randomInRange(
+        soundscape.settings.drone.envelope.attack.min,
+        soundscape.settings.drone.envelope.attack.max,
+        (isInt = false)
+      );
+      var sustain = randomInRange(
+        soundscape.settings.drone.envelope.sustain.min,
+        soundscape.settings.drone.envelope.sustain.max,
+        (isInt = false)
+      );
+      var release = randomInRange(
+        soundscape.settings.drone.envelope.release.min,
+        soundscape.settings.drone.envelope.release.max,
+        (isInt = false)
+      );
+      var preDelay = 0,
+        postDelay = 0;
 
-      if (Math.random() >= 0.01) {
-        preDelay = randomInRange(1, 5) / 10;
+      if (Math.random() <= soundscape.settings.drone.delay.pre.chance / 100) {
+        preDelay = randomInRange(
+          soundscape.settings.drone.delay.pre.min,
+          soundscape.settings.drone.delay.pre.max,
+          (isInt = false)
+        );
+      }
+
+      if (Math.random() <= soundscape.settings.drone.delay.post.chance / 100) {
+        postDelay = randomInRange(
+          soundscape.settings.drone.delay.post.min,
+          soundscape.settings.drone.delay.post.max,
+          (isInt = false)
+        );
       }
 
       gainNode.gain.setValueAtTime(0, now);
       gainNode.gain.linearRampToValueAtTime(
-        randomInRange(1, 35) / 1000 / soundscape.settings.maxDroneTracks,
+        randomInRange(
+          soundscape.settings.drone.gain.min,
+          soundscape.settings.drone.gain.max,
+          (isInt = false)
+        ) / (soundscape.settings.drone.gain.dividedBy || 1),
         now + preDelay + attack
-      ); // Base modifier on number of tracks...
+      );
       gainNode.gain.linearRampToValueAtTime(
         0,
         now + preDelay + attack + sustain + release
       );
 
       oscillator.start(now + preDelay);
-      oscillator.stop(now + preDelay + attack + sustain + release + 0.01);
+      oscillator.stop(
+        now + preDelay + attack + sustain + release + postDelay + 0.01
+      );
 
       oscillator.connect(gainNode);
       gainNode.connect(panner);
@@ -153,11 +298,39 @@ soundscape.generateTwiddleTracks = function() {
       frequency = frequency * 2;
     }
 
-    var attack = randomInRange(5, 20) / 10;
-    var sustain = randomInRange(5, 20) / 10;
-    var decay = randomInRange(5, 20) / 10;
-    var preDelay = randomInRange(1, 15) / 10;
-    var postDelay = randomInRange(1, 15) / 10;
+    var attack = randomInRange(
+      soundscape.settings.twiddle.envelope.attack.min,
+      soundscape.settings.twiddle.envelope.attack.max,
+      (isInt = false)
+    );
+    var sustain = randomInRange(
+      soundscape.settings.twiddle.envelope.sustain.min,
+      soundscape.settings.twiddle.envelope.sustain.max,
+      (isInt = false)
+    );
+    var release = randomInRange(
+      soundscape.settings.twiddle.envelope.release.min,
+      soundscape.settings.twiddle.envelope.release.max,
+      (isInt = false)
+    );
+    var preDelay = 0,
+      postDelay = 0;
+
+    if (Math.random() <= soundscape.settings.twiddle.delay.pre.chance / 100) {
+      preDelay = randomInRange(
+        soundscape.settings.twiddle.delay.pre.min,
+        soundscape.settings.twiddle.delay.pre.max,
+        (isInt = false)
+      );
+    }
+
+    if (Math.random() <= soundscape.settings.twiddle.delay.post.chance / 100) {
+      preDelay = randomInRange(
+        soundscape.settings.twiddle.delay.post.min,
+        soundscape.settings.twiddle.delay.post.max,
+        (isInt = false)
+      );
+    }
 
     soundscape.tracks[twiddleTrackId].parts[
       twiddlePartId
@@ -168,7 +341,11 @@ soundscape.generateTwiddleTracks = function() {
     soundscape.tracks[twiddleTrackId].parts[
       twiddlePartId
     ].gainNode.gain.linearRampToValueAtTime(
-      randomInRange(1, 80) / 100 / soundscape.settings.maxDroneTracks,
+      randomInRange(
+        soundscape.settings.twiddle.gain.min,
+        soundscape.settings.twiddle.gain.max,
+        (isInt = false)
+      ),
       currentTime + preDelay + attack
     );
 
@@ -176,14 +353,15 @@ soundscape.generateTwiddleTracks = function() {
       twiddlePartId
     ].gainNode.gain.linearRampToValueAtTime(
       0,
-      currentTime + preDelay + attack + sustain + decay
+      currentTime + preDelay + attack + sustain + release
     );
 
     soundscape.tracks[twiddleTrackId].parts[
       twiddlePartId
     ].panner.pan.setValueAtTime(randomInRange(1, 20) / 10 - 1, currentTime);
 
-    currentTime = currentTime + attack + sustain + decay + preDelay + postDelay;
+    currentTime =
+      currentTime + preDelay + attack + sustain + release + postDelay;
   }
 
   soundscape.tracks[twiddleTrackId].parts[

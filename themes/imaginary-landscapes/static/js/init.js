@@ -93,8 +93,18 @@ function shuffle(a) {
   return a;
 }
 
-function randomInRange(minimum, maximum) {
-  return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+function randomInRange(min, max, isInt = true) {
+  var rand =
+    Math.random() < 0.5
+      ? (1 - Math.random()) * (max - min) + min
+      : Math.random() * (max - min) + min;
+  var power = Math.pow(10, 10);
+  if(isInt){
+    return Math.floor((rand * power) / power);
+  } else {
+    return Math.floor(rand * power) / power;
+  }
+
 }
 
 function createRandomId(obj) {
