@@ -41,13 +41,16 @@ tunings.just.set = function() {};
 // Modes.
 
 tunings.modes = {
-  ionian: ["W", "W", "H", "W", "W", "W", "H"],
-  dorian: ["W", "H", "W", "W", "W", "H", "W"],
-  phrygian: ["H", "W", "W", "W", "H", "W", "W"],
-  lydian: ["W", "W", "W", "H", "W", "W", "H"],
-  mixolydian: ["W", "W", "H", "W", "W", "H", "W"],
-  aeolian: ["W", "H", "W", "W", "H", "W", "W"],
-  locrian: ["H", "W", "W", "H", "W", "W", "W"]
+  ionian: [2, 2, 1, 2, 2, 2, 1],
+  dorian: [2, 1, 2, 2, 2, 1, 2],
+  phrygian: [1, 2, 2, 2, 1, 2, 2],
+  lydian: [2, 2, 2, 1, 2, 2, 1],
+  mixolydian: [2, 2, 1, 2, 2, 1, 2],
+  aeolian: [2, 1, 2, 2, 1, 2, 2],
+  locrian: [1, 2, 2, 1, 2, 2, 2],
+  majorPentatonic: [2, 2, 2, 3, 2],
+  minorPentatonic: [3, 2, 2, 3],
+  wholeTone: [2, 2, 2, 2, 2, 2]
 };
 
 tunings.keys = {};
@@ -64,14 +67,7 @@ tunings.keys.set = function() {
       var intervals = tunings.modes[modeName];
       var currentFreq = i;
       intervals.forEach(function(interval, index) {
-        if (interval == "W") {
-          currentFreq += 2;
-        } else {
-          currentFreq += 1;
-        }
-
-        // if currentFreq = 8, notes = 7
-
+        currentFreq += interval;
         if (
           currentFreq >
           tunings[tunings.settings.tuningSystem].notes.length - 1
