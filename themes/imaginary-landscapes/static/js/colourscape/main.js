@@ -54,7 +54,7 @@ for (i = 0; i < 360; i++) {
     colourscape.satOptions.push(i);
   }
 
-  if (i >= 80 && i < 96) {
+  if (i >= 76 && i < 86) {
     colourscape.lumOptions.push(i);
   }
 
