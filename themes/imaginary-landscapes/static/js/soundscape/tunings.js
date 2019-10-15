@@ -87,13 +87,37 @@ tunings.keys.set = function() {
 
 tunings.keys.set();
 
-tunings.keys.getRandom = function(callback) {
-  var keyKey = shuffle(Object.keys(tunings.keys))[
-    Math.floor(Math.random() * shuffle(Object.keys(tunings.keys)).length)
-  ];
-  if (typeof key !== "function") {
-    callback({ [keyKey]: tunings.keys[keyKey].notes });
+tunings.keys.getRandom = function(key = null, scale = null, callback) {
+  var keyKey;
+  if (key && scale) {
+    keyKey = key + "_" + scale;
+  } else if (key && !scale) {
+    keyKey =
+      key +
+      "_" +
+      shuffle(Object.keys(tunings.scales))[
+        Math.floor(Math.random() * Object.keys(tunings.scales).length)
+      ];
+  } else if (!key && scale) {
+    keyKey =
+      shuffle(tunings.settings.musicalNotes)[
+        Math.floor(Math.random() * tunings.settings.musicalNotes.length)
+      ] +
+      "_" +
+      scale;
   } else {
-    tunings.keys.getRandom(callback);
+    keyKey = shuffle(Object.keys(tunings.keys))[
+      Math.floor(Math.random() * shuffle(Object.keys(tunings.keys)).length)
+    ];
+  }
+
+  if (typeof key !== "function") {
+    if (tunings.keys[keyKey]) {
+      callback({ [keyKey]: tunings.keys[keyKey].notes });
+    } else {
+      tunings.keys.getRandom(null, null, callback);
+    }
+  } else {
+    tunings.keys.getRandom(key, scale, callback);
   }
 };

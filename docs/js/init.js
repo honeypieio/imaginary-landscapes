@@ -1,3 +1,5 @@
+var urlParams = new URLSearchParams(window.location.search);
+
 // Initialises sound and/or vision.
 function init() {
   document.body.addEventListener(
@@ -64,7 +66,6 @@ function init() {
   }
 
   // Get options from URL query string.
-  var urlParams = new URLSearchParams(window.location.search);
   //colourscape.delay = urlParams.get("delay") || 1000;
   //var quality = urlParams.get('quality') || "lossy";
   var vision = urlParams.get("vision") || "on";
@@ -99,12 +100,11 @@ function randomInRange(min, max, isInt = true) {
       ? (1 - Math.random()) * (max - min) + min
       : Math.random() * (max - min) + min;
   var power = Math.pow(10, 10);
-  if(isInt){
+  if (isInt) {
     return Math.floor((rand * power) / power);
   } else {
     return Math.floor(rand * power) / power;
   }
-
 }
 
 function createRandomId(obj) {

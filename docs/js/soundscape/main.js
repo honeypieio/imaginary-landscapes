@@ -3,122 +3,7 @@ var soundscape = {};
 
 soundscape.tracks = {};
 soundscape.convolvers = {};
-soundscape.settings = {
-  sampleRate: 22050,
-  drone: {
-    tracks: {
-      min: 4,
-      max: 8
-    },
-    parts: {
-      min: 1,
-      max: 3
-    },
-    changeOctave: {
-      up: {
-        chance: 1,
-        min: 2,
-        max: 2
-      },
-      down: {
-        chance: 66.666,
-        min: 2,
-        max: 3
-      }
-    },
-    gain: {
-      min: 0.03,
-      max: 0.08,
-      get dividedBy() {
-        return soundscape.settings.drone.tracks.max;
-      }
-    },
-    envelope: {
-      attack: {
-        min: 7,
-        max: 15
-      },
-      sustain: {
-        min: 4,
-        max: 7
-      },
-      release: {
-        min: 7,
-        max: 12
-      }
-    },
-    delay: {
-      pre: {
-        chance: 33.333,
-        min: 0.1,
-        max: 5
-      },
-      post: {
-        chance: 1,
-        min: 0.1,
-        max: 0.5
-      }
-    }
-  },
-  twiddle: {
-    changeOctave: {
-      up: {
-        chance: 1,
-        min: 2,
-        max: 2
-      },
-      down: {
-        chance: 90,
-        min: 2,
-        max: 3
-      }
-    },
-    gain: {
-      min: 0.01,
-      max: 0.04
-    },
-    envelope: {
-      attack: {
-        min: 1,
-        max: 3
-      },
-      sustain: {
-        min: 1,
-        max: 2
-      },
-      release: {
-        min: 1,
-        max: 3
-      }
-    },
-    delay: {
-      pre: {
-        chance: 33.333,
-        min: 0.1,
-        max: 1.5
-      },
-      post: {
-        chance: 1,
-        min: 0.1,
-        max: 1.5
-      }
-    }
-  },
-  master: {
-    gain: 1,
-    eq: {
-      lp: {
-        frequency: 300,
-        Q: 0,
-        gain: 2
-      }
-    }
-  },
-  fadeOut: 5,
-  oscWaveforms: ["sine", "triangle"]
-};
-
-soundscape.generateDroneTracks = function() {
+soundscape.settings = soundscape.generateDroneTracks = function() {
   var currentMaxDroneTracks;
   if (
     Object.keys(soundscape.tracks).length < soundscape.settings.drone.tracks.max
@@ -206,7 +91,7 @@ soundscape.generateDroneTracks = function() {
           Object.keys(soundscape.tracks).length <
           soundscape.settings.drone.tracks.max
         ) {
-          minDroneTracks: 4, soundscape.generateDroneTracks();
+          soundscape.generateDroneTracks();
         }
       };
 
@@ -429,9 +314,13 @@ soundscape.stopAll = function(callback) {
   }, soundscape.settings.fadeOut * 1200);
 };
 
-soundscape.getConvolver = function(callback) {
+soundscape.getConvolver = function(convolver, callback) {
   ajaxRequest = new XMLHttpRequest();
-  ajaxRequest.open("GET", "/js/soundscape/convolvers/cathedral.mp3", true);
+  ajaxRequest.open(
+    "GET",
+    "/js/soundscape/convolvers/" + convolver + ".mp3",
+    true
+  );
   ajaxRequest.responseType = "arraybuffer";
 
   ajaxRequest.onload = function() {
@@ -452,51 +341,76 @@ soundscape.getConvolver = function(callback) {
   ajaxRequest.send();
 };
 
+soundscape.getPreset = function(preset, callback) {
+  ajaxRequest = new XMLHttpRequest();
+  ajaxRequest.open("GET", "/js/soundscape/presets/" + preset + ".json", true);
+  ajaxRequest.responseType = "json";
+  ajaxRequest.onload = function() {
+    if (ajaxRequest.response) {
+      soundscape.settings = ajaxRequest.response;
+      callback();
+    } else {
+      console.log("Configuration not found, loading default...");
+      soundscape.getPreset("default", callback);
+    }
+  };
+
+  ajaxRequest.send();
+};
+
 soundscape.init = function() {
-  // Create audio context;
-  soundscape.context = new AudioContext({
-    sampleRate: soundscape.settings.sampleRate
-  });
+  soundscape.getPreset(urlParams.get("preset") || "default", function() {
+    if (soundscape.settings.referencePitch) {
+      tunings.settings.referencePitch = soundscape.settings.referencePitch;
+    }
 
-  soundscape.getConvolver(function() {
-    soundscape.master = {};
+    soundscape.context = new AudioContext({
+      sampleRate: soundscape.settings.sampleRate
+    });
 
-    soundscape.master.gainNode = soundscape.context.createGain();
-    soundscape.master.gainNode.gain.setValueAtTime(
-      soundscape.settings.master.gain,
-      soundscape.context.currentTime
-    );
+    soundscape.getConvolver(soundscape.settings.convolver, function() {
+      soundscape.master = {};
 
-    soundscape.master.reverb = soundscape.context.createConvolver();
-    soundscape.master.reverb.buffer = soundscape.convolvers.cathedral;
+      soundscape.master.gainNode = soundscape.context.createGain();
+      soundscape.master.gainNode.gain.setValueAtTime(
+        soundscape.settings.master.gain,
+        soundscape.context.currentTime
+      );
 
-    soundscape.master.compressor = soundscape.context.createDynamicsCompressor();
+      soundscape.master.reverb = soundscape.context.createConvolver();
+      soundscape.master.reverb.buffer = soundscape.convolvers.cathedral;
 
-    soundscape.master.filters = {
-      lowpass: soundscape.context.createBiquadFilter({
-        type: "lowpass"
-      })
-    };
+      soundscape.master.compressor = soundscape.context.createDynamicsCompressor();
 
-    soundscape.master.filters.lowpass.frequency.value =
-      soundscape.settings.master.eq.lp.frequency;
+      soundscape.master.filters = {
+        lowpass: soundscape.context.createBiquadFilter({
+          type: "lowpass"
+        })
+      };
 
-    soundscape.master.filters.lowpass.Q.value =
-      soundscape.settings.master.eq.lp.Q;
+      soundscape.master.filters.lowpass.frequency.value =
+        soundscape.settings.master.eq.lp.frequency;
 
-    soundscape.master.filters.lowpass.gain.value =
-      soundscape.settings.master.eq.lp.gain;
+      soundscape.master.filters.lowpass.Q.value =
+        soundscape.settings.master.eq.lp.Q;
 
-    soundscape.master.reverb.connect(soundscape.master.gainNode);
-    soundscape.master.gainNode.connect(soundscape.master.filters.lowpass);
-    soundscape.master.filters.lowpass.connect(soundscape.master.compressor);
-    soundscape.master.compressor.connect(soundscape.context.destination);
+      soundscape.master.filters.lowpass.gain.value =
+        soundscape.settings.master.eq.lp.gain;
 
-    // Select key and mode.
-    tunings.keys.getRandom(function(key) {
-      soundscape.key = key;
-      soundscape.generateDroneTracks();
-      soundscape.generateTwiddleTracks();
+      soundscape.master.reverb.connect(soundscape.master.gainNode);
+      soundscape.master.gainNode.connect(soundscape.master.filters.lowpass);
+      soundscape.master.filters.lowpass.connect(soundscape.master.compressor);
+      soundscape.master.compressor.connect(soundscape.context.destination);
+
+      tunings.keys.getRandom(
+        soundscape.settings.key || null,
+        soundscape.settings.scale || null,
+        function(key) {
+          soundscape.key = key;
+          soundscape.generateDroneTracks();
+          soundscape.generateTwiddleTracks();
+        }
+      );
     });
   });
 };
