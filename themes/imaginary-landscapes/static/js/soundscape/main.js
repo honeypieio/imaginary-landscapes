@@ -104,6 +104,16 @@ soundscape.settings = {
       }
     }
   },
+  master: {
+    gain: 1,
+    eq: {
+      lp: {
+        frequency: 300,
+        Q: 0,
+        gain: 2
+      }
+    }
+  },
   fadeOut: 5,
   oscWaveforms: ["sine", "triangle"]
 };
@@ -453,7 +463,7 @@ soundscape.init = function() {
 
     soundscape.master.gainNode = soundscape.context.createGain();
     soundscape.master.gainNode.gain.setValueAtTime(
-      1,
+      soundscape.settings.master.gain,
       soundscape.context.currentTime
     );
 
@@ -462,8 +472,24 @@ soundscape.init = function() {
 
     soundscape.master.compressor = soundscape.context.createDynamicsCompressor();
 
+    soundscape.master.filters = {
+      lowpass: soundscape.context.createBiquadFilter({
+        type: "lowpass"
+      })
+    };
+
+    soundscape.master.filters.lowpass.frequency.value =
+      soundscape.settings.master.eq.lp.frequency;
+
+    soundscape.master.filters.lowpass.Q.value =
+      soundscape.settings.master.eq.lp.Q;
+
+    soundscape.master.filters.lowpass.gain.value =
+      soundscape.settings.master.eq.lp.gain;
+
     soundscape.master.reverb.connect(soundscape.master.gainNode);
-    soundscape.master.gainNode.connect(soundscape.master.compressor);
+    soundscape.master.gainNode.connect(soundscape.master.filters.lowpass);
+    soundscape.master.filters.lowpass.connect(soundscape.master.compressor);
     soundscape.master.compressor.connect(soundscape.context.destination);
 
     // Select key and mode.
