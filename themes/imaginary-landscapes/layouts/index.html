@@ -8,6 +8,10 @@
   playing multiple audio sources at once.
 </small>
 
+<center>
+  <p id="configInfo" style="font-weight: bold;"></p>
+</center>
+
 <button id="initApp" type="submit" class="btn btn-block">Start</button>
 
 <div class="footer">
@@ -15,6 +19,17 @@
 </div>
 
 <script>
+
+  window.onload = function(){
+    soundscape.getPreset(urlParams.get("preset") || "default", function() {
+      if (soundscape.settings.title) {
+        document.getElementById("configInfo").style.marginTop = "50px";
+        document.getElementById("configInfo").textContent =
+          'Configuration "' + soundscape.settings.title + '" loaded!';
+      }
+    });
+  }
+
   document.getElementById("initApp").addEventListener("click", function() {
     document.body.innerHTML = "";
     document.body.style.overflow = "hidden";

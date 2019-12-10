@@ -1,6 +1,10 @@
 {
-  "sampleRate": 22050,
+  "title": "Home For Tea",
+  "key": "G",
+  "scale": "minorPentatonic",
   "convolver": "dreamy-cathedral",
+  "referencePitch": 432,
+  "sampleRate": 22050,
   "drone": {
     "tracks": {
       "min": 3,
@@ -25,7 +29,7 @@
     "gain": {
       "min": 0.03,
       "max": 0.08,
-      "dividedBy": 8
+      "dividedBy": 6
     },
     "envelope": {
       "attack": {

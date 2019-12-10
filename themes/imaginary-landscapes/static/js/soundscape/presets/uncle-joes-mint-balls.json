@@ -1,56 +1,60 @@
 {
+  "title": "Uncle Joe's Mint Balls (Keep You All Aglow)",
   "sampleRate": 22050,
-  "convolver": "dreamy-cathedral",
+  "convolver": "big-honkin-wet-dreamy-fart",
+  "key": "A",
+  "referencePitch": 500,
+  "scale": "minorPentatonic",
   "drone": {
     "tracks": {
-      "min": 3,
-      "max": 6
+      "min": 2,
+      "max": 3
     },
     "parts": {
-      "min": 1,
-      "max": 3
+      "min": 2,
+      "max": 4
     },
     "changeOctave": {
       "up": {
-        "chance": 1,
+        "chance": 50,
         "min": 2,
         "max": 2
       },
       "down": {
-        "chance": 66.666,
+        "chance": 50,
         "min": 2,
-        "max": 3
+        "max": 4
       }
     },
     "gain": {
       "min": 0.03,
-      "max": 0.08,
-      "dividedBy": 8
+      "max": 0.04,
+      "dividedBy": 3
     },
     "envelope": {
       "attack": {
-        "min": 7,
-        "max": 15
+        "min": 10,
+        "max": 30
       },
       "sustain": {
-        "min": 4,
-        "max": 7
+        "min": 5,
+        "max": 10
       },
       "release": {
-        "min": 7,
-        "max": 12
+        "min": 10,
+        "max": 30
       }
     },
     "delay": {
       "pre": {
-        "chance": 33.333,
-        "min": 0.1,
-        "max": 5
+        "chance": 10,
+        "min": 5,
+        "max": 20
       },
       "post": {
-        "chance": 1,
-        "min": 0.1,
-        "max": 0.5
+        "chance": 2.5,
+        "min": 1,
+        "max": 10
       }
     }
   },
@@ -62,39 +66,39 @@
         "max": 2
       },
       "down": {
-        "chance": 90,
+        "chance": 80,
         "min": 2,
-        "max": 3
+        "max": 2
       }
     },
     "gain": {
       "min": 0.01,
-      "max": 0.04
+      "max": 0.03
     },
     "envelope": {
       "attack": {
-        "min": 1,
-        "max": 3
+        "min": 5,
+        "max": 10
       },
       "sustain": {
         "min": 1,
         "max": 2
       },
       "release": {
-        "min": 1,
-        "max": 3
+        "min": 5,
+        "max": 10
       }
     },
     "delay": {
       "pre": {
         "chance": 33.333,
-        "min": 0.1,
-        "max": 1.5
+        "min": 3,
+        "max": 10
       },
       "post": {
         "chance": 1,
-        "min": 0.1,
-        "max": 1.5
+        "min": 1,
+        "max": 5
       }
     }
   },
@@ -102,9 +106,9 @@
     "gain": 1,
     "eq": {
       "lp": {
-        "frequency": 300,
-        "Q": 0,
-        "gain": 2
+        "frequency": 200,
+        "Q": 1,
+        "gain": 1
       }
     }
   },
