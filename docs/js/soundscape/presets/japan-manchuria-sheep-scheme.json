@@ -1,6 +1,10 @@
 {
-  "sampleRate": 22050,
+  "title": "Japan-Manchuria Sheep Scheme",
+  "key": "D",
+  "scale": "majorPentatonic",
   "convolver": "dreamy-cathedral",
+  "referencePitch": 432,
+  "sampleRate": 22050,
   "drone": {
     "tracks": {
       "min": 3,
@@ -25,12 +29,12 @@
     "gain": {
       "min": 0.03,
       "max": 0.08,
-      "dividedBy": 8
+      "dividedBy": 4
     },
     "envelope": {
       "attack": {
-        "min": 7,
-        "max": 15
+        "min": 6,
+        "max": 12
       },
       "sustain": {
         "min": 4,
@@ -38,7 +42,7 @@
       },
       "release": {
         "min": 7,
-        "max": 12
+        "max": 18
       }
     },
     "delay": {
@@ -102,9 +106,9 @@
     "gain": 1,
     "eq": {
       "lp": {
-        "frequency": 300,
+        "frequency": 400,
         "Q": 0,
-        "gain": 2
+        "gain": 3
       }
     }
   },

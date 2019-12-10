@@ -1,55 +1,59 @@
 {
+  "title": "Wasn't That Great (?)",
   "sampleRate": 22050,
-  "convolver": "dreamy-cathedral",
+  "convolver": "big-honkin-wet-dreamy-fart",
+  "referencePitch": 612,
+  "key": "F#",
+  "scale": "majorPentatonic",
   "drone": {
     "tracks": {
-      "min": 3,
-      "max": 6
+      "min": 1,
+      "max": 2
     },
     "parts": {
-      "min": 1,
+      "min": 2,
       "max": 3
     },
     "changeOctave": {
       "up": {
-        "chance": 1,
+        "chance": 50,
         "min": 2,
-        "max": 2
+        "max": 4
       },
       "down": {
-        "chance": 66.666,
+        "chance": 50,
         "min": 2,
-        "max": 3
+        "max": 4
       }
     },
     "gain": {
-      "min": 0.03,
-      "max": 0.08,
-      "dividedBy": 8
+      "min": 0.1,
+      "max": 0.2,
+      "dividedBy": 4
     },
     "envelope": {
       "attack": {
-        "min": 7,
-        "max": 15
+        "min": 2,
+        "max": 5
       },
       "sustain": {
-        "min": 4,
-        "max": 7
+        "min": 2,
+        "max": 4
       },
       "release": {
-        "min": 7,
-        "max": 12
+        "min": 2,
+        "max": 5
       }
     },
     "delay": {
       "pre": {
-        "chance": 33.333,
-        "min": 0.1,
-        "max": 5
+        "chance": 50,
+        "min": 0.4,
+        "max": 2
       },
       "post": {
-        "chance": 1,
-        "min": 0.1,
+        "chance": 80,
+        "min": 0.2,
         "max": 0.5
       }
     }
@@ -57,44 +61,44 @@
   "twiddle": {
     "changeOctave": {
       "up": {
-        "chance": 1,
+        "chance": 50,
         "min": 2,
-        "max": 2
+        "max": 4
       },
       "down": {
-        "chance": 90,
+        "chance": 50,
         "min": 2,
-        "max": 3
+        "max": 4
       }
     },
     "gain": {
-      "min": 0.01,
-      "max": 0.04
+      "min": 0.02,
+      "max": 0.05
     },
     "envelope": {
       "attack": {
         "min": 1,
-        "max": 3
+        "max": 5
       },
       "sustain": {
         "min": 1,
-        "max": 2
+        "max": 2.5
       },
       "release": {
-        "min": 1,
-        "max": 3
+        "min": 2,
+        "max": 4
       }
     },
     "delay": {
       "pre": {
-        "chance": 33.333,
-        "min": 0.1,
-        "max": 1.5
+        "chance": 10,
+        "min": 2,
+        "max": 5
       },
       "post": {
-        "chance": 1,
-        "min": 0.1,
-        "max": 1.5
+        "chance": 0,
+        "min": 0,
+        "max": 0
       }
     }
   },
@@ -102,9 +106,9 @@
     "gain": 1,
     "eq": {
       "lp": {
-        "frequency": 300,
+        "frequency": 150,
         "Q": 0,
-        "gain": 2
+        "gain": 1
       }
     }
   },

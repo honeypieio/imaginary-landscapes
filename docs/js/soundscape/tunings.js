@@ -31,8 +31,6 @@ tunings.equal.set = function() {
   }
 };
 
-tunings.equal.set();
-
 // Just Intonation
 tunings.just = {};
 tunings.just.notes = [];
@@ -42,7 +40,7 @@ tunings.just.set = function() {};
 
 tunings.scales = {
   majorHeptatonic: [2, 2, 1, 2, 2, 2, 1],
-  minorHeptatonic: [2, 1, 2, 2, 1, 2, 2],
+  majorHeptatonic: [2, 1, 2, 2, 1, 2, 2],
   majorPentatonic: [2, 2, 3, 2, 3],
   minorPentatonic: [3, 2, 2, 3, 2],
   wholeTone: [2, 2, 2, 2, 2, 2]
@@ -85,8 +83,6 @@ tunings.keys.set = function() {
   });
 };
 
-tunings.keys.set();
-
 tunings.keys.getRandom = function(key = null, scale = null, callback) {
   var keyKey;
   if (key && scale) {
@@ -120,4 +116,10 @@ tunings.keys.getRandom = function(key = null, scale = null, callback) {
   } else {
     tunings.keys.getRandom(key, scale, callback);
   }
+};
+
+tunings.init = function(callback) {
+  tunings.equal.set();
+  tunings.keys.set();
+  callback();
 };
