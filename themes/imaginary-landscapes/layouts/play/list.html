@@ -45,7 +45,7 @@
     };
 
     document.getElementById("initApp").addEventListener("click", function() {
-      document.body.innerHTML = '{{- partial "convolvers.html" . -}}';
+      document.body.innerHTML = "";
       document.body.style.overflow = "hidden";
       var sceneDiv = document.createElement("div");
       sceneDiv.id = "scene";
@@ -64,7 +64,7 @@
     {{ range (where (where (where .Site.Pages "Type" "convolvers") ".Params.audioData" "!=" "") ".File.BaseFileName" "!=" "") }}
       availableConvolvers["{{ .File.BaseFileName }}"] = "{{ .Params.audioData }}";
     {{ end }}
-    
+
     function setConfig(preset) {
       document.getElementById("configSelect").value = preset;
       if(availableConfigs[preset]){

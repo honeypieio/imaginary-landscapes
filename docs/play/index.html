@@ -134,7 +134,7 @@
     };
 
     document.getElementById("initApp").addEventListener("click", function() {
-      document.body.innerHTML = '\x3caudio id=\x22convolver_bathroom\x22 src=\x22\/js\/soundscape\/convolvers\/bathroom.mp3\x22\x3e\x3c\/audio\x3e\n\x3caudio id=\x22convolver_big-honkin-wet-dreamy-fart\x22 src=\x22\/js\/soundscape\/convolvers\/big-honkin-wet-dreamy-fart.mp3\x22\x3e\x3c\/audio\x3e\n\x3caudio id=\x22convolver_cathedral\x22 src=\x22\/js\/soundscape\/convolvers\/cathedral.mp3\x22\x3e\x3c\/audio\x3e\n\x3caudio id=\x22convolver_dreamy-cathedral\x22 src=\x22\/js\/soundscape\/convolvers\/dreamy-cathedral.mp3\x22\x3e\x3c\/audio\x3e\n\x3caudio id=\x22convolver_none\x22 src=\x22\/js\/soundscape\/convolvers\/none.mp3\x22\x3e\x3c\/audio\x3e\n';
+      document.body.innerHTML = "";
       document.body.style.overflow = "hidden";
       var sceneDiv = document.createElement("div");
       sceneDiv.id = "scene";
@@ -177,7 +177,7 @@
     
       availableConvolvers["none"] = "\/\/uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAAFMgDMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAUHQQABzAAABTKpzgpJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\/\/vAxAAABrABY7QAACOZsus3NPAAAAUkkZT7TchxYPh8PAhB8PxAGFAmD5\/B8\/lDn8v4Yid5d\/8EwfB9\/y4Pg\x2bD\/\/\/B8H\/l3iAECg0tYbFG69WpFG4022kE4QIPgXWkXOXGTAzDgQYJGBIABvSAgrfhQwhqYQCuQyyxgHYsiGj6LYbcIUkbociHocSEvxJEORiAF6JiIsSU\/VhmJSJ6XxFHOKWMBSEsRaKHqRz5S2fL91C8PhOrJbFKpGh7I\/V0NuV13Ujv1QhbLGo1RCalK42kfNs\x2bXKaBJFjvk4nYDgzITZkePoMCsKOxRqutRJPee99NkODCdwXl2izXHgxbSK5vfXpXGstsSA3uEeBFj5lxKwPu\/eOE\/p3tbOVLWtitfi2fXEEE545\/6gVAhv\/4NCFx3qqiWUwamGESLaGpFxAcTJen6dJ2kpISS14X5PIcrsOAQVTmkZeCp0RAyWBo8JX4KnRKGlA1Bp4lDZUNKBpwNP9YKw1ER5QdWCrwVd\/xKGxKGiwNU1neWTEFNRTMuMTAwqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr\/\x2b0DE1QPLADc73PMAIAAANIAAAASqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqg==";
     
-    
+
     function setConfig(preset) {
       document.getElementById("configSelect").value = preset;
       if(availableConfigs[preset]){
