@@ -9,6 +9,7 @@ function init() {
       colourscape.stopAllLoops();
       document.getElementById("scene").innerHTML = "";
       colourscape.initiateScene();
+      console.log("Colourscape initiated");
     },
     false
   );
