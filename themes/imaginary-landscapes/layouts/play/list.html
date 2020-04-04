@@ -1,0 +1,83 @@
+{{ define "main" }}
+
+  {{ .Content }}
+
+
+  <p>
+    <small>
+      Tip: to change the colourscape, simply right click (or swipe right on mobile) anywhere on the screen
+    </small>
+  </p>
+
+  <select id="configSelect" class="fancySelect">
+    <option selected disabled>Select a config.</option>
+    <option value="default">Random - generates a randomized config.</option>
+    <optgroup label="Selected Scenes">
+      {{ range (where (where (where .Site.Pages "Type" "configs") ".Title" "!=" "") ".File.BaseFileName" "!=" "") }}
+        {{ if ne .Title "Random" }}
+          <option value="{{ .File.BaseFileName }}">
+            {{ .Weight }}.
+            {{ .Title }}
+            {{if .Description }}
+              - {{ .Description }}
+            {{ end }}
+          </option>
+        {{ end }}
+      {{ end }}
+    </optgroup>
+  </select>
+
+  <button id="initApp" type="submit" class="btn btn-block">Start</button>
+
+  <p>
+    <small>
+      Note: this has only been tested with current Chromium/Chrome and Firefox.
+      Some mobile devices and older computers may also experience issues with
+      playing multiple audio sources at once. Pre-recorded samples are available on
+      <a href="https://rosshudson.bandcamp.com/album/imaginary-landscapes-selected-scenes" target="_blank">Bandcamp</a>.
+    </small>
+  </p>
+
+  <script>
+
+    window.onload = function() {
+      setConfig(urlParams.get("preset") || "default");
+    };
+
+    document.getElementById("initApp").addEventListener("click", function() {
+      document.body.innerHTML = '{{- partial "convolvers.html" . -}}';
+      document.body.style.overflow = "hidden";
+      var sceneDiv = document.createElement("div");
+      sceneDiv.id = "scene";
+      document.body.appendChild(sceneDiv);
+      setTimeout(function() {
+        init();
+      }, 10);
+    });
+
+    var availableConfigs = {};
+    {{ range sort (where (where (where .Site.Pages "Type" "configs") ".Title" "!=" "") ".File.BaseFileName" "!=" "") ".Title" "asc" }}
+      availableConfigs["{{ .File.BaseFileName }}"] = JSON.parse({{readFile .File.Path}});
+    {{ end }}
+
+    var availableConvolvers = {};
+    {{ range (where (where (where .Site.Pages "Type" "convolvers") ".Params.audioData" "!=" "") ".File.BaseFileName" "!=" "") }}
+      availableConvolvers["{{ .File.BaseFileName }}"] = "{{ .Params.audioData }}";
+    {{ end }}
+    
+    function setConfig(preset) {
+      document.getElementById("configSelect").value = preset;
+      if(availableConfigs[preset]){
+        soundscape.settings = availableConfigs[preset];
+      } else {
+        setConfig("default");
+      }
+    }
+
+    document.getElementById("configSelect").addEventListener("change", function() {
+      setConfig(this.value);
+    });
+
+  </script>
+
+{{ end }}

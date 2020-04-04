@@ -334,49 +334,29 @@ soundscape.stopAll = function(callback) {
 };
 
 soundscape.getConvolver = function(convolver, callback) {
-  ajaxRequest = new XMLHttpRequest();
-  ajaxRequest.open(
-    "GET",
-    "/js/soundscape/convolvers/" + convolver + ".mp3",
-    true
-  );
-  ajaxRequest.responseType = "arraybuffer";
 
-  ajaxRequest.onload = function() {
-    var audioData = ajaxRequest.response;
-    soundscape.context.decodeAudioData(
-      audioData,
-      function(buffer) {
-        soundscape.convolvers.cathedral = soundscape.context.createBufferSource();
-        soundscape.convolvers.cathedral = buffer;
-        callback();
-      },
-      function(e) {
-        callback(e.err);
-      }
-    );
-  };
+  var convolverBin = availableConvolvers["none"];
 
-  ajaxRequest.send();
-};
+  if(availableConvolvers[convolver]){
+    convolverBin = availableConvolvers[convolver]
+  }
 
-soundscape.getPreset = function(preset, callback) {
-  console.log("getting preset");
-  ajaxRequest = new XMLHttpRequest();
-  ajaxRequest.open("GET", "/js/soundscape/presets/" + preset + ".json", true);
-  ajaxRequest.responseType = "json";
-  ajaxRequest.onload = function() {
-    if (ajaxRequest.response) {
-      soundscape.settings = ajaxRequest.response;
+  var audioData = Base64Binary.decodeArrayBuffer(convolverBin);
+  soundscape.context.decodeAudioData(
+    audioData,
+    function(buffer) {
+      //soundscape.convolvers.cathedral = soundscape.context.createBufferSource();
+      soundscape.convolvers.cathedral = buffer;
+
       callback();
-    } else {
-      console.log("Configuration not found, loading default...");
-      soundscape.getPreset("default", callback);
+    },
+    function(e) {
+      callback(e.err);
     }
-  };
+  );
 
-  ajaxRequest.send();
 };
+
 
 soundscape.init = function() {
   if (soundscape.settings.referencePitch) {

@@ -1,5 +1,6 @@
 {
   "title": "What It Is, Is",
+  "weight": "7",
   "sampleRate": 22050,
   "convolver": "none",
   "referencePitch": 365,

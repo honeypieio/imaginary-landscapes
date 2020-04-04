@@ -1,114 +1,115 @@
 {
-  "title": "Home For Tea",
-  "key": "G",
-  "scale": "minorPentatonic",
-  "convolver": "dreamy-cathedral",
-  "referencePitch": 432,
+  "title": "I Thought You Knowed",
+  "weight": "6",
   "sampleRate": 22050,
+  "convolver": "big-honkin-wet-dreamy-fart",
+  "referencePitch": 440,
+  "key": "B",
+  "scale": "majorHeptatonic",
   "drone": {
     "tracks": {
-      "min": 3,
-      "max": 6
+      "min": 6,
+      "max": 8
     },
     "parts": {
       "min": 1,
-      "max": 3
+      "max": 2
     },
     "changeOctave": {
       "up": {
-        "chance": 1,
+        "chance": 10,
         "min": 2,
         "max": 2
       },
       "down": {
-        "chance": 66.666,
+        "chance": 25,
         "min": 2,
-        "max": 3
+        "max": 4
       }
     },
     "gain": {
-      "min": 0.03,
-      "max": 0.08,
-      "dividedBy": 6
+      "min": 0.1,
+      "max": 0.2,
+      "dividedBy": 10
     },
     "envelope": {
       "attack": {
-        "min": 7,
-        "max": 15
+        "min": 3,
+        "max": 6
       },
       "sustain": {
-        "min": 4,
-        "max": 7
+        "min": 2,
+        "max": 4
       },
       "release": {
-        "min": 7,
-        "max": 12
+        "min": 5,
+        "max": 7
       }
     },
     "delay": {
       "pre": {
-        "chance": 33.333,
-        "min": 0.1,
-        "max": 5
+        "chance": 25,
+        "min": 1,
+        "max": 10
       },
       "post": {
-        "chance": 1,
-        "min": 0.1,
-        "max": 0.5
+        "chance": 10,
+        "min": 0.5,
+        "max": 6
       }
     }
   },
   "twiddle": {
     "changeOctave": {
       "up": {
-        "chance": 1,
+        "chance": 33.333,
         "min": 2,
         "max": 2
       },
       "down": {
-        "chance": 90,
+        "chance": 33.333,
         "min": 2,
         "max": 3
       }
     },
     "gain": {
-      "min": 0.01,
-      "max": 0.04
+      "min": 0.04,
+      "max": 0.1
     },
     "envelope": {
       "attack": {
-        "min": 1,
-        "max": 3
+        "min": 2,
+        "max": 4
       },
       "sustain": {
         "min": 1,
-        "max": 2
+        "max": 2.8
       },
       "release": {
-        "min": 1,
-        "max": 3
+        "min": 3,
+        "max": 6
       }
     },
     "delay": {
       "pre": {
-        "chance": 33.333,
-        "min": 0.1,
-        "max": 1.5
+        "chance": 10,
+        "min": 0.2,
+        "max": 0.5
       },
       "post": {
-        "chance": 1,
-        "min": 0.1,
-        "max": 1.5
+        "chance": 10,
+        "min": 0.3,
+        "max": 0.8
       }
     }
   },
   "master": {
-    "gain": 1,
+    "gain": 0.6,
     "eq": {
       "lp": {
         "frequency": 300,
         "Q": 0,
-        "gain": 2
+        "gain": 1
       }
     }
   },

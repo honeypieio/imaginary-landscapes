@@ -10,7 +10,7 @@ body {
 }
 
 .central-column {
-  width: 60%;
+  width: 40%;
   padding: 10px;
   margin: auto;
 }
@@ -26,6 +26,10 @@ a {
   text-decoration: none;
 }
 
+.plain-link, .plain-link:hover {
+  color: white;
+}
+
 img {
   width: 100%;
   height: auto;
@@ -35,12 +39,25 @@ a:hover {
   text-decoration: underline;
 }
 
-.btn {
+.fancySelect {
+  display: block;
+  width: 100%;
+  margin: auto;
   border: none;
-  padding: 10px;
+  padding: 14px;
   border-radius: 5px;
   background-color: white;
-  text-transform: uppercase;
+  font-family: "Ubuntu Mono";
+  font-size: 1rem;
+}
+
+.btn {
+  border: none;
+  padding: 14px;
+  border-radius: 5px;
+  background-color: white;
+  font-family: "Ubuntu Mono";
+  font-size: 1rem;
 }
 
 .btn:hover {
@@ -51,8 +68,9 @@ a:hover {
 
 .btn-block {
   margin: auto;
-  margin-top: 50px;
-  width: 50%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 100%;
   display: block;
 }
 

@@ -1,59 +1,58 @@
 {
-  "title": "Crooks & Grannies",
+  "title": "Random",
+  "description": "generates a randomized config.",
+  "weight": "-1",
   "sampleRate": 22050,
-  "convolver": "none",
-  "referencePitch": 222,
-  "key": "D#",
-  "scale": "majorHeptatonic",
+  "convolver": "dreamy-cathedral",
   "drone": {
     "tracks": {
-      "min": 2,
-      "max": 3
+      "min": 3,
+      "max": 6
     },
     "parts": {
-      "min": 2,
+      "min": 1,
       "max": 3
     },
     "changeOctave": {
       "up": {
-        "chance": 100,
+        "chance": 1,
         "min": 2,
         "max": 2
       },
       "down": {
-        "chance": 10,
+        "chance": 66.666,
         "min": 2,
-        "max": 2
+        "max": 3
       }
     },
     "gain": {
-      "min": 0.1,
-      "max": 0.2,
-      "dividedBy": 4
+      "min": 0.03,
+      "max": 0.08,
+      "dividedBy": 8
     },
     "envelope": {
       "attack": {
-        "min": 2,
-        "max": 5
+        "min": 7,
+        "max": 15
       },
       "sustain": {
-        "min": 2,
-        "max": 4
+        "min": 4,
+        "max": 7
       },
       "release": {
-        "min": 2,
-        "max": 5
+        "min": 7,
+        "max": 12
       }
     },
     "delay": {
       "pre": {
-        "chance": 50,
-        "min": 0.4,
-        "max": 2
+        "chance": 33.333,
+        "min": 0.1,
+        "max": 5
       },
       "post": {
-        "chance": 80,
-        "min": 0.2,
+        "chance": 1,
+        "min": 0.1,
         "max": 0.5
       }
     }
@@ -61,54 +60,54 @@
   "twiddle": {
     "changeOctave": {
       "up": {
-        "chance": 100,
-        "min": 2,
-        "max": 3
-      },
-      "down": {
-        "chance": 0,
+        "chance": 1,
         "min": 2,
         "max": 2
+      },
+      "down": {
+        "chance": 90,
+        "min": 2,
+        "max": 3
       }
     },
     "gain": {
-      "min": 0.015,
-      "max": 0.02
+      "min": 0.01,
+      "max": 0.04
     },
     "envelope": {
       "attack": {
-        "min": 0.2,
-        "max": 0.4
+        "min": 1,
+        "max": 3
       },
       "sustain": {
-        "min": 0.5,
+        "min": 1,
         "max": 2
       },
       "release": {
-        "min": 0.3,
-        "max": 0.75
+        "min": 1,
+        "max": 3
       }
     },
     "delay": {
       "pre": {
-        "chance": 50,
-        "min": 1,
-        "max": 2
+        "chance": 33.333,
+        "min": 0.1,
+        "max": 1.5
       },
       "post": {
-        "chance": 50,
-        "min": 1,
-        "max": 2
+        "chance": 1,
+        "min": 0.1,
+        "max": 1.5
       }
     }
   },
   "master": {
-    "gain": 3,
+    "gain": 1,
     "eq": {
       "lp": {
-        "frequency": 500,
-        "Q": 1,
-        "gain": 3
+        "frequency": 300,
+        "Q": 0,
+        "gain": 2
       }
     }
   },

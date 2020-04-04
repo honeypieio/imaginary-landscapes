@@ -3,11 +3,81 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/configs/default/</loc>
+  </url>
+  
+  <url>
+    <loc>/configs/home-for-tea/</loc>
+  </url>
+  
+  <url>
+    <loc>/configs/lazy-susan/</loc>
+  </url>
+  
+  <url>
+    <loc>/configs/uncle-joes-mint-balls/</loc>
+  </url>
+  
+  <url>
+    <loc>/configs/crooks-and-grannies/</loc>
+  </url>
+  
+  <url>
+    <loc>/configs/wasnt-that-great/</loc>
+  </url>
+  
+  <url>
+    <loc>/configs/i-thought-you-knowed/</loc>
+  </url>
+  
+  <url>
+    <loc>/configs/what-it-is-is/</loc>
+  </url>
+  
+  <url>
+    <loc>/configs/japan-manchuria-sheep-scheme/</loc>
+  </url>
+  
+  <url>
     <loc>/</loc>
   </url>
   
   <url>
+    <loc>/convolvers/bathroom/</loc>
+  </url>
+  
+  <url>
+    <loc>/convolvers/big-honkin-wet-dreamy-fart/</loc>
+  </url>
+  
+  <url>
+    <loc>/convolvers/cathedral/</loc>
+  </url>
+  
+  <url>
+    <loc>/convolvers/dreamy-cathedral/</loc>
+  </url>
+  
+  <url>
+    <loc>/convolvers/none/</loc>
+  </url>
+  
+  <url>
+    <loc>/play/</loc>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/configs/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/convolvers/</loc>
     <priority>0</priority>
   </url>
   

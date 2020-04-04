@@ -1,45 +1,19 @@
 {{ define "main" }}
 
-{{ .Content }}
+  <p>{{ .Params.tagline }}</p>
 
-<small>
-  Note: this has only been tested with current Chromium/Chrome and Firefox.
-  Some mobile devices and older computers may also experience issues with
-  playing multiple audio sources at once.
-</small>
+  <img src="/images/example-colourscape1.jpg" />
 
-<center>
-  <p id="configInfo" style="font-weight: bold;"></p>
-</center>
+  {{ .Content }}
 
-<button id="initApp" type="submit" class="btn btn-block">Start</button>
+  <button class="btn btn-block" onclick="window.location.href='/play'">Get Started!</button>
 
-<div class="footer">
-  View source on <a href="https://github.com/honeypieio/imaginary-landscapes">Github</a>
-</div>
-
-<script>
-
-  window.onload = function(){
-    soundscape.getPreset(urlParams.get("preset") || "default", function() {
-      if (soundscape.settings.title) {
-        document.getElementById("configInfo").style.marginTop = "50px";
-        document.getElementById("configInfo").textContent =
-          'Configuration "' + soundscape.settings.title + '" loaded!';
-      }
-    });
-  }
-
-  document.getElementById("initApp").addEventListener("click", function() {
-    document.body.innerHTML = "";
-    document.body.style.overflow = "hidden";
-    var sceneDiv = document.createElement("div");
-    sceneDiv.id = "scene";
-    document.body.appendChild(sceneDiv);
-    setTimeout(function() {
-      init();
-    }, 10);
-  });
-</script>
+  <script>
+    window.onload = function() {
+      if(urlParams.get("preset")) {
+        window.location.href = "/play?preset=" + urlParams.get("preset");
+      };
+    };
+  </script>
 
 {{ end }}

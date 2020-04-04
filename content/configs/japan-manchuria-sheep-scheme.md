@@ -1,59 +1,60 @@
 {
-  "title": "Wasn't That Great (?)",
-  "sampleRate": 22050,
-  "convolver": "big-honkin-wet-dreamy-fart",
-  "referencePitch": 612,
-  "key": "F#",
+  "title": "Japan-Manchuria Sheep Scheme",
+  "weight": "8",
+  "key": "D",
   "scale": "majorPentatonic",
+  "convolver": "dreamy-cathedral",
+  "referencePitch": 432,
+  "sampleRate": 22050,
   "drone": {
     "tracks": {
-      "min": 1,
-      "max": 2
+      "min": 3,
+      "max": 6
     },
     "parts": {
-      "min": 2,
+      "min": 1,
       "max": 3
     },
     "changeOctave": {
       "up": {
-        "chance": 50,
+        "chance": 1,
         "min": 2,
-        "max": 4
+        "max": 2
       },
       "down": {
-        "chance": 50,
+        "chance": 66.666,
         "min": 2,
-        "max": 4
+        "max": 3
       }
     },
     "gain": {
-      "min": 0.1,
-      "max": 0.2,
+      "min": 0.03,
+      "max": 0.08,
       "dividedBy": 4
     },
     "envelope": {
       "attack": {
-        "min": 2,
-        "max": 5
+        "min": 6,
+        "max": 12
       },
       "sustain": {
-        "min": 2,
-        "max": 4
+        "min": 4,
+        "max": 7
       },
       "release": {
-        "min": 2,
-        "max": 5
+        "min": 7,
+        "max": 18
       }
     },
     "delay": {
       "pre": {
-        "chance": 50,
-        "min": 0.4,
-        "max": 2
+        "chance": 33.333,
+        "min": 0.1,
+        "max": 5
       },
       "post": {
-        "chance": 80,
-        "min": 0.2,
+        "chance": 1,
+        "min": 0.1,
         "max": 0.5
       }
     }
@@ -61,44 +62,44 @@
   "twiddle": {
     "changeOctave": {
       "up": {
-        "chance": 50,
+        "chance": 1,
         "min": 2,
-        "max": 4
+        "max": 2
       },
       "down": {
-        "chance": 50,
+        "chance": 90,
         "min": 2,
-        "max": 4
+        "max": 3
       }
     },
     "gain": {
-      "min": 0.02,
-      "max": 0.05
+      "min": 0.01,
+      "max": 0.04
     },
     "envelope": {
       "attack": {
         "min": 1,
-        "max": 5
+        "max": 3
       },
       "sustain": {
         "min": 1,
-        "max": 2.5
+        "max": 2
       },
       "release": {
-        "min": 2,
-        "max": 4
+        "min": 1,
+        "max": 3
       }
     },
     "delay": {
       "pre": {
-        "chance": 10,
-        "min": 2,
-        "max": 5
+        "chance": 33.333,
+        "min": 0.1,
+        "max": 1.5
       },
       "post": {
-        "chance": 0,
-        "min": 0,
-        "max": 0
+        "chance": 1,
+        "min": 0.1,
+        "max": 1.5
       }
     }
   },
@@ -106,9 +107,9 @@
     "gain": 1,
     "eq": {
       "lp": {
-        "frequency": 150,
+        "frequency": 400,
         "Q": 0,
-        "gain": 1
+        "gain": 3
       }
     }
   },

@@ -1,24 +1,25 @@
 {
-  "title": "Uncle Joe's Mint Balls (Keep You All Aglow)",
+  "title": "Wasn't That Great (?)",
+  "weight": "5",
   "sampleRate": 22050,
   "convolver": "big-honkin-wet-dreamy-fart",
-  "key": "A",
-  "referencePitch": 500,
-  "scale": "minorPentatonic",
+  "referencePitch": 612,
+  "key": "F#",
+  "scale": "majorPentatonic",
   "drone": {
     "tracks": {
-      "min": 2,
-      "max": 3
+      "min": 1,
+      "max": 2
     },
     "parts": {
       "min": 2,
-      "max": 4
+      "max": 3
     },
     "changeOctave": {
       "up": {
         "chance": 50,
         "min": 2,
-        "max": 2
+        "max": 4
       },
       "down": {
         "chance": 50,
@@ -27,78 +28,78 @@
       }
     },
     "gain": {
-      "min": 0.03,
-      "max": 0.04,
-      "dividedBy": 3
+      "min": 0.1,
+      "max": 0.2,
+      "dividedBy": 4
     },
     "envelope": {
       "attack": {
-        "min": 10,
-        "max": 30
+        "min": 2,
+        "max": 5
       },
       "sustain": {
-        "min": 5,
-        "max": 10
+        "min": 2,
+        "max": 4
       },
       "release": {
-        "min": 10,
-        "max": 30
+        "min": 2,
+        "max": 5
       }
     },
     "delay": {
       "pre": {
-        "chance": 10,
-        "min": 5,
-        "max": 20
+        "chance": 50,
+        "min": 0.4,
+        "max": 2
       },
       "post": {
-        "chance": 2.5,
-        "min": 1,
-        "max": 10
+        "chance": 80,
+        "min": 0.2,
+        "max": 0.5
       }
     }
   },
   "twiddle": {
     "changeOctave": {
       "up": {
-        "chance": 1,
+        "chance": 50,
         "min": 2,
-        "max": 2
+        "max": 4
       },
       "down": {
-        "chance": 80,
+        "chance": 50,
         "min": 2,
-        "max": 2
+        "max": 4
       }
     },
     "gain": {
-      "min": 0.01,
-      "max": 0.03
+      "min": 0.02,
+      "max": 0.05
     },
     "envelope": {
       "attack": {
-        "min": 5,
-        "max": 10
+        "min": 1,
+        "max": 5
       },
       "sustain": {
         "min": 1,
-        "max": 2
+        "max": 2.5
       },
       "release": {
-        "min": 5,
-        "max": 10
+        "min": 2,
+        "max": 4
       }
     },
     "delay": {
       "pre": {
-        "chance": 33.333,
-        "min": 3,
-        "max": 10
+        "chance": 10,
+        "min": 2,
+        "max": 5
       },
       "post": {
-        "chance": 1,
-        "min": 1,
-        "max": 5
+        "chance": 0,
+        "min": 0,
+        "max": 0
       }
     }
   },
@@ -106,8 +107,8 @@
     "gain": 1,
     "eq": {
       "lp": {
-        "frequency": 200,
-        "Q": 1,
+        "frequency": 150,
+        "Q": 0,
         "gain": 1
       }
     }
