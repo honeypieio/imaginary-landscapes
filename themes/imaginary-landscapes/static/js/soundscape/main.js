@@ -334,11 +334,10 @@ soundscape.stopAll = function(callback) {
 };
 
 soundscape.getConvolver = function(convolver, callback) {
-
   var convolverBin = availableConvolvers["none"];
 
-  if(availableConvolvers[convolver]){
-    convolverBin = availableConvolvers[convolver]
+  if (availableConvolvers[convolver]) {
+    convolverBin = availableConvolvers[convolver];
   }
 
   var audioData = Base64Binary.decodeArrayBuffer(convolverBin);
@@ -354,9 +353,7 @@ soundscape.getConvolver = function(convolver, callback) {
       callback(e.err);
     }
   );
-
 };
-
 
 soundscape.init = function() {
   if (soundscape.settings.referencePitch) {

@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: "Ubuntu Mono";
+  font-family: "Ubuntu Mono", monospace;
   background-color: #772953;
   color: white;
 }
@@ -47,7 +47,7 @@ a:hover {
   padding: 14px;
   border-radius: 5px;
   background-color: white;
-  font-family: "Ubuntu Mono";
+  font-family: "Ubuntu Mono", monospace;
   font-size: 1rem;
 }
 
@@ -56,7 +56,7 @@ a:hover {
   padding: 14px;
   border-radius: 5px;
   background-color: white;
-  font-family: "Ubuntu Mono";
+  font-family: "Ubuntu Mono", monospace;
   font-size: 1rem;
 }
 

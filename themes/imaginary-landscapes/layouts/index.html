@@ -6,12 +6,12 @@
 
   {{ .Content }}
 
-  <button class="btn btn-block" onclick="window.location.href='/play'">Get Started!</button>
+  <button class="btn btn-block" onclick="window.location.href='{{ .Site.BaseURL }}/play'">Get Started!</button>
 
   <script>
     window.onload = function() {
       if(urlParams.get("preset")) {
-        window.location.href = "/play?preset=" + urlParams.get("preset");
+        window.location.href = "{{ .Site.BaseURL }}/play?preset=" + urlParams.get("preset");
       };
     };
   </script>
