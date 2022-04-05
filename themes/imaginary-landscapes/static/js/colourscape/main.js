@@ -64,8 +64,14 @@ for (i = 0; i < 360; i++) {
 }
 
 // Creates scene
-colourscape.generateSceneElements = function() {
-  colourscape.scene.elements = {};
+colourscape.generateSceneElements = function(regenerate = false) {
+  if(!regenerate) {
+    colourscape.scene.elements = {};
+  } else {  
+    colourscape.oldScene = { elements: colourscape.scene.elements };
+  }
+  
+
   var maxElements = 5; //5
   var minElements = 2; // 2
   var numberOfElements =
@@ -73,20 +79,34 @@ colourscape.generateSceneElements = function() {
 
   for (i = 0; i < numberOfElements; i++) {
     let element = {};
+    if(regenerate) {
+      if(i !== 0) {
 
-    if (i == 0) {
-      element.id = "background";
-      element.DOMObject = document.createElement("div");
-      element.DOMObject.id = element.id;
+        let elementId = Object.keys(colourscape.oldScene.elements)[i];
+        if(elementId != undefined) {
+          if(document.getElementById(elementId)) {
+            let newShape = colourscape.generateShape();
+            document.getElementById(elementId).id = newShape;
+            colourscape.scene.elements[newShape] = colourscape.scene.elements[elementId];
+            delete colourscape.scene.elements[elementId];
+          }
+        }
+      }
     } else {
-      element.shape = colourscape.generateShape();
-      element.id = element.shape;
-      element.DOMObject = document.createElement("div");
-      element.DOMObject.id = element.shape;
-    }
+      if (i == 0) {
+        element.id = "background";
+        element.DOMObject = document.createElement("div");
+        element.DOMObject.id = element.id;
+      } else {
+        element.shape = colourscape.generateShape();
+        element.id = element.shape;
+        element.DOMObject = document.createElement("div");
+        element.DOMObject.id = element.shape;
+      }
 
-    element.DOMObject.className += " scene-element";
-    document.getElementById("scene").appendChild(element.DOMObject);
+      element.DOMObject.className += " scene-element";
+      document.getElementById("scene").appendChild(element.DOMObject);
+    }
 
     let numberOfColours = 1;
 
@@ -154,7 +174,7 @@ colourscape.generateShape = function() {
 
 colourscape.stopAllLoops = function() {
   for (i = 0; i < colourscape.activeLoops.length; i++) {
-    clearInterval(colourscape.activeLoops[i]);
+    clearInterval(colourscape.activeLoops[i].intervalId);
   }
 };
 
@@ -254,9 +274,7 @@ colourscape.fade = function(element) {
 
         for (j = 0; j < colourscape.hsl.length; j++) {
           let hslProperty = colourscape.hsl[j];
-          if (
-            colour.currentColour[hslProperty] > colour.targetColour[hslProperty]
-          ) {
+          if (colour.currentColour[hslProperty] > colour.targetColour[hslProperty]) {
             if (hslProperty == "a") {
               colour.currentColour[hslProperty] = Number(
                 parseFloat(
@@ -266,9 +284,7 @@ colourscape.fade = function(element) {
             } else {
               colour.currentColour[hslProperty] -= +1;
             }
-          } else if (
-            colour.currentColour[hslProperty] < colour.targetColour[hslProperty]
-          ) {
+          } else if (colour.currentColour[hslProperty] < colour.targetColour[hslProperty]) {
             if (hslProperty == "a") {
               colour.currentColour[hslProperty] = Number(
                 parseFloat(
@@ -282,12 +298,32 @@ colourscape.fade = function(element) {
         }
       }
     }
-    colourscape.updateDisplay(element);
+
+    let elementDeprecated = true;
+    for(let i = 0; i < Object.keys(colourscape.scene.elements).length; i++) {
+      if(colourscape.scene.elements[Object.keys(colourscape.scene.elements)[i]].id == element.id) {
+        elementDeprecated = false;
+      }
+    }
+
+    if(!elementDeprecated) {
+      colourscape.updateDisplay(element);
+    }
   };
 
   let intervalId = setInterval(fadeLoop, colourscape.delay);
-  colourscape.activeLoops.push(intervalId);
+  colourscape.activeLoops.push({ intervalId, fadeLoop });
 };
+
+colourscape.resetFadeDelay = function(newDelay) {
+  colourscape.delay = newDelay;
+  colourscape.activeLoops.forEach(function(interval) {
+    clearInterval(interval.intervalId);
+    
+    let newIntervalId = setInterval(interval.fadeLoop, newDelay);
+    colourscape.activeLoops.push({ intervalId: newIntervalId, fadeLoop: interval.fadeLoop });
+  })
+}
 
 // Updates the DOM.
 colourscape.updateDisplay = function(element) {
@@ -349,7 +385,9 @@ colourscape.updateDisplay = function(element) {
       ")";
   }
 
-  document.getElementById(element.id).style.background = colourString;
+  if(document.getElementById(element.id)) {
+    document.getElementById(element.id).style.background = colourString;
+  }
 
   // Update "theme-color" meta attribute (coloured navigation bar on mobile devices).
   var header =
@@ -387,8 +425,12 @@ colourscape.updateDisplay = function(element) {
   document.getElementsByTagName("head")[0].appendChild(header);
 };
 
+colourscape.fadeToNewScene = function() {
+  colourscape.generateSceneElements(true);
+}
+
 colourscape.initiateScene = function() {
-  colourscape.generateSceneElements();
+  colourscape.generateSceneElements(false);
   Object.keys(colourscape.scene.elements).forEach(function(elementId) {
     let element = colourscape.scene.elements[elementId];
     colourscape.updateDisplay(element);

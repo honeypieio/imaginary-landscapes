@@ -14,16 +14,6 @@ function init() {
     false
   );
 
-  document.body.addEventListener(
-    "click",
-    function(e) {
-      soundscape.stopAll(function() {
-        soundscape.init();
-      });
-    },
-    false
-  );
-
   document.addEventListener("touchstart", handleTouchStart, false);
   document.addEventListener("touchmove", handleTouchMove, false);
   var xDown = null;
@@ -45,23 +35,12 @@ function init() {
 
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       /*most significant*/
-      if (xDiff > 0) {
-        soundscape.stopAll(function() {
-          soundscape.init();
-        });
-      } else {
+      if (!(xDiff > 0)) {
         colourscape.stopAllLoops();
         document.getElementById("scene").innerHTML = "";
         colourscape.initiateScene();
       }
-    } else {
-      if (yDiff > 0) {
-        /* up swipe */
-      } else {
-        /* down swipe */
-      }
     }
-    /* reset values */
     xDown = null;
     yDown = null;
   }

@@ -188,6 +188,7 @@ soundscape.generateTwiddleTracks = function() {
   var frequency = shuffle(Object.values(soundscape.key))[0][
     randomInRange(0, shuffle(Object.values(soundscape.key))[0].length - 1)
   ];
+
   if (
     Math.random() <=
     soundscape.settings.twiddle.changeOctave.down.chance / 100
