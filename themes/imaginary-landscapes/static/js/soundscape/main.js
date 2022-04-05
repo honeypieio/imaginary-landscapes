@@ -356,6 +356,16 @@ soundscape.getConvolver = function(convolver, callback) {
   );
 };
 
+soundscape.changeKey = function() {
+  tunings.keys.getRandom(
+    soundscape.settings.key || null,
+    soundscape.settings.scale || null,
+    function(key) {
+      soundscape.key = key;
+    }
+  )
+};
+
 soundscape.init = function() {
   if (soundscape.settings.referencePitch) {
     tunings.settings.referencePitch = soundscape.settings.referencePitch;
