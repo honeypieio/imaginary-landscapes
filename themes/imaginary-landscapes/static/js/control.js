@@ -11,6 +11,10 @@ const controls = {
 
 let keys;
 
+// TODO
+// Modify controls so that setting key is pressed, followed by a number. Rather than de/incrementing values which is laggy
+// e.g. press "s" and then 8 to set to speed to 8
+
 const setupControlListeners = function() {
   document.addEventListener("keydown", function (e) {
     const eventObject = window.event ? event : e
@@ -60,8 +64,10 @@ const setupControlListeners = function() {
   }, false);
 }
 
+
 const modifyControl = function(control, direction) {
   const controlToModify = controls[control];
+  
   if(direction == "up" && controlToModify.value < controlToModify.max) {
     controls[control].value++;
   }
@@ -70,9 +76,12 @@ const modifyControl = function(control, direction) {
     controls[control].value--;
   }
 
+  // TODO
+  // Add code to modify state program
+  console.log("Modifying control...");
   if(control == "speed") {
     console.log("Updated speed");
-    const delay = controls[control].value * 200;
+    const delay = 2200 - (controls[control].value * 200);
     colourscape.resetFadeDelay(delay);
   }
 } 

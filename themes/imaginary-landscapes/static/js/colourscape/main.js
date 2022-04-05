@@ -1,3 +1,11 @@
+// TODO
+// Add the ability to modify on the fly:
+// * Speed - DONE
+// * Warmth (modify available HSL values, saturation?)
+// * Plink-plonk (?)
+// * Quality (blur?)
+// * Thiccness (?)
+
 // Create colourscape parent object - contains methods and configs.
 var colourscape = {};
 
@@ -316,6 +324,7 @@ colourscape.fade = function(element) {
 };
 
 colourscape.resetFadeDelay = function(newDelay) {
+  console.log("Setting new delay...");
   colourscape.delay = newDelay;
   colourscape.activeLoops.forEach(function(interval) {
     clearInterval(interval.intervalId);

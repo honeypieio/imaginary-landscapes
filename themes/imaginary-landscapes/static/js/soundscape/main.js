@@ -1,3 +1,11 @@
+// TODO
+// Add the ability to modify on the fly:
+// * Speed (sustain)
+// * Warmth (warm = consonant, cold = disonant)
+// * Plink-plonk (twiddle attack and release)
+// * Quality (filter on master audio context)
+// * Thiccness (number of tracks)
+
 // Create soundscape parent object - contains methods and configs.
 var soundscape = {};
 
