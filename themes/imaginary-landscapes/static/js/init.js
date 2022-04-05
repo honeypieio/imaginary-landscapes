@@ -60,6 +60,8 @@ function init() {
   if (sound != "on" && vision != "on") {
     window.location.href = "/";
   }
+
+  setupControlListeners();
 }
 
 // Fisher-Yates shuffle algorithim.
