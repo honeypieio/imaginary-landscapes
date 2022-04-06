@@ -22,30 +22,31 @@ const setupControlListeners = function() {
 
     key = e.keyCode;
 
-    switch(key)
-	{
+    switch(key) {
 	/* p */	case 80:
-			  control = "plinkPlonk";
-			  break;
+      control = "plinkPlonk";
+			break;
 	/* q */	case 81:
-			  control = "quality";
-			  break;
+			control = "quality";
+			break;
 	/* s */	case 83:
-			  control = "speed";
-			  break;
+			control = "speed";
+			break;
 	/* t */	case 84:
-			  control = "thiccness";
-			  break;
+			control = "thiccness";
+			break;
 	/* w */	case 87:
-			  control = "warmth";
-			  break;
+			control = "warmth";
+      break;
+  /* . */ case 190:
+      toggleSettingsDialog();
+      break;
 		default:
-		          //anything else into control func, let it sort
-			  modifyControl(control,key);
-			  break;
+		  //anything else into control func, let it sort
+			modifyControl(control,key);
+			break;
 	}
 
-    console.log(control);
   }, false);
 
 //might need this in future
@@ -72,14 +73,53 @@ const modifyControl = function(control, value) {
   }
 
   controls[control].value = (adjValue);
-  console.log(adjValue);
-
-/*
-if(control == "speed") {
-    console.log("Updated speed");
-    const delay = 2200 - (controls[control].value * 200);
+  
+  if(control == "speed") {
+    const delay = 1900 - (controls[control].value * 200);
     colourscape.resetFadeDelay(delay);
   }
-  */
 
+  updateSettingsDialog(false);
+}
+
+let settingsDialogOpen = false;
+let settingsDialog = document.getElementById("settingsDialog");
+
+const updateSettingsDialog = function(create = false) {
+  Object.keys(controls).forEach(function(control) {
+    let controlValue, controlLine;
+    if(create) {
+      if(!document.getElementById("settingsDialog")) {
+        settingsDialog = document.createElement("div");
+        settingsDialog.id = "settingsDialog";
+        document.body.appendChild(settingsDialog);
+      }
+
+      settingsDialog = document.getElementById("settingsDialog");
+      controlLine = document.createElement("p");
+      controlLine.textContent = control + ": ";
+      
+      controlValue = document.createElement("span");
+      controlValue.id = control + "_control";
+    } else {
+      controlValue = document.getElementById(control + "_control");
+    }
+    
+    controlValue.textContent = controls[control].value;
+
+    if(create) {
+      controlLine.appendChild(controlValue);
+      settingsDialog.appendChild(controlLine);
+    }
+  });
+}
+
+const toggleSettingsDialog = function() {
+  if(settingsDialogOpen) {
+    settingsDialog.style.display = "none";
+    settingsDialogOpen = false;
+  } else {
+    settingsDialog.style.display = "block";
+    settingsDialogOpen = true;
+  }
 }

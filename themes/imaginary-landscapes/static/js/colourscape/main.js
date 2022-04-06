@@ -438,7 +438,7 @@ colourscape.fadeToNewScene = function() {
   colourscape.generateSceneElements(true);
 }
 
-colourscape.initiateScene = function() {
+colourscape.initiateScene = function() { 
   colourscape.generateSceneElements(false);
   Object.keys(colourscape.scene.elements).forEach(function(elementId) {
     let element = colourscape.scene.elements[elementId];

@@ -61,6 +61,7 @@ function init() {
     window.location.href = "/";
   }
 
+  updateSettingsDialog(true);
   setupControlListeners();
 }
 
