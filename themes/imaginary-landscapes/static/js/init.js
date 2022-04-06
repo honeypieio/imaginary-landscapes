@@ -1,5 +1,5 @@
 var urlParams = new URLSearchParams(window.location.search);
-
+//import { setupControlListeners } from 'control.js';
 // Initialises sound and/or vision.
 function init() {
   document.body.addEventListener(

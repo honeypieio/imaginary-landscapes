@@ -1,87 +1,85 @@
-// Controls: speed, warmth, quality, plink-plonk, thichness
+// Controls: speed, warmth, quality, plink-plonk, thiccness
 
 // Default controls
 const controls = {
-  speed: { value: 5, min: 1, max: 10 },
-  warmth: { value: 5, min: 1, max: 10 },
-  quality: { value: 5, min: 1, max: 10 },
-  plinkPlonk: { value: 5, min: 1, max: 10 },
-  thiccness: { value: 5, min: 1, max: 10 }
+  plinkPlonk: { value: 5, min: 0, max: 9 },
+  quality: { value: 5, min: 0, max: 9 },
+  speed: { value: 5, min: 0, max: 9 },
+  thiccness: { value: 5, min: 0, max: 9 },
+  warmth: { value: 5, min: 0, max: 9 }
 }
 
-let keys;
+let key;
+let control;
 
 // TODO
-// Modify controls so that setting key is pressed, followed by a number. Rather than de/incrementing values which is laggy
-// e.g. press "s" and then 8 to set to speed to 8
+// Remove or rework min/max values? as can only change to single digit, also is 0 actually lower than 1?
+// Add keypress to draw current values on visualisation
 
 const setupControlListeners = function() {
   document.addEventListener("keydown", function (e) {
     const eventObject = window.event ? event : e
-    
-    keys = (keys || []);
-    keys[e.keyCode] = true;
 
-    // Speed s and arrow keys
-    if(keys[83] && keys[38]) {
-      modifyControl("speed", "up");
-    } else if(keys[83] && keys[40]) {
-      modifyControl("speed", "down");
-    }
+    key = e.keyCode;
 
-    // Warmth - w and arrow keys
-    if(keys[87] && keys[38]) {
-      modifyControl("warmth", "up");
-    } else if(keys[87] && keys[40]) {
-      modifyControl("warmth", "down");
-    }
+    switch(key)
+	{
+	/* p */	case 80:
+			  control = "plinkPlonk";
+			  break;
+	/* q */	case 81:
+			  control = "quality";
+			  break;
+	/* s */	case 83:
+			  control = "speed";
+			  break;
+	/* t */	case 84:
+			  control = "thiccness";
+			  break;
+	/* w */	case 87:
+			  control = "warmth";
+			  break;
+		default:
+		          //anything else into control func, let it sort
+			  modifyControl(control,key);
+			  break;
+	}
 
-    // Quality - q and arrow keys
-    if(keys[81] && keys[38]) {
-      modifyControl("quality", "up");
-    } else if(keys[81] && keys[40]) {
-      modifyControl("quality", "down");
-    }
-
-    // Thiccness - t and arrow keys
-    if(keys[84] && keys[38]) {
-      modifyControl("thiccness", "up");
-    } else if(keys[84] && keys[40]) {
-      modifyControl("thiccness", "down");
-    }
-
-    // Plink plonk - p and arrow keys
-    if(keys[80] && keys[38]) {
-      modifyControl("plinkPlonk", "up");
-    } else if(keys[80] && keys[40]) {
-      modifyControl("plinkPlonk", "down");
-    }
+    console.log(control);
   }, false);
 
+//might need this in future
+/*
   document.addEventListener("keyup", function (e) {
       keys[e.keyCode]=false;
       stop();
   }, false);
+*/
+
 }
-
-
-const modifyControl = function(control, direction) {
-  const controlToModify = controls[control];
-  
-  if(direction == "up" && controlToModify.value < controlToModify.max) {
-    controls[control].value++;
-  }
-
-  if(direction == "down" && controlToModify.value > controlToModify.min) {
-    controls[control].value--;
-  }
 
   // TODO
   // Add code to modify state program
-  console.log("Modifying control...");
-  if(control == "speed") {
+  // fix speed visualisation
+  // tell Isy what state program is
+
+const modifyControl = function(control, value) {
+  let adjValue = value - 48 	//adjust value by offset
+
+  //if not num key, gtfo
+  if((adjValue > 9) || (adjValue < 0)){
+	  return;
+  }
+
+  controls[control].value = (adjValue);
+  console.log(adjValue);
+
+/*
+if(control == "speed") {
     console.log("Updated speed");
     const delay = 2200 - (controls[control].value * 200);
     colourscape.resetFadeDelay(delay);
   }
-} 
+  */
+
+}
